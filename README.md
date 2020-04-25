@@ -4,28 +4,64 @@
 
  Status        | Description
  ------------- | ------------- 
- **STATUS**    | _Under Construction_ 
- **STRATEGY**  | _Spike working example_
+ **STATUS**    | _Experimental_ 
+ **STRATEGY**  | _Experiment_
 
 
 ## Design
 
-**Replace this with one or more paragraphs explaining the design choices and any reasoning, limitations, trade-offs etc.**  
+**Folder based react-native samples**  
 
-It should cover at a high-level approach to testing, security concerns, deployment, disaster recovery criticality.  Picture speaks a thousand words.
+
+## Prerequisites
+
+* XCode for iOS simulator
+* Android Developer Studio for Android Simulator
+* expo-cli for better react-native framework
 
 
 ## Getting started
 
-**Replace this content with instructions to build and run locally or in a DEV environment.**
+**Navigate into one of the project folders and follow the README.md instructions.**
 
-It should be detailed enough to allow a new engineer joining the team (local or remote) to make reasonable progress with only limited need for assistance from existing engineer.
+Alternatively try the following
 
-_If this is a mono-repo with child modules it should contain common and/or specific sections per child project_
+* `npm install`
+* `npm start -c`
 
-### Prerequisites
 
-Replace this with any prerequisites required (e.g. software you need installed or accounts you need access to), with links to WiKi or contacts to help resolve those.
+### Fixing react-navigation
+
+1. Install React Navigation
+
+`npm install react-navigation`
+
+2. Install Dependencies
+
+`expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view`
+
+3. Install React Navigation Stack
+
+`npm install react-navigation-stack @react-native-community/masked-view`
+
+4. Start the app and clear cache with npm start -c
+
+Errors?
+If you are still seeing errors and complaints about packages, do the following:
+
+1. `rm -r node_modules`
+2. `rm package-lock.json`
+3. `expo upgrade`
+4. `npm start -c`
+
+Update Imports
+Our imports in the upcoming lecture will now look like this:
+
+```
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+```
+
 
 ### Building and Testing locally
 
@@ -46,9 +82,6 @@ Property Name  | Description
 _Nuggets of Knowledge and Thinking from last people to work on the project._
 _e.g. suggestions for technical debt reduction, simplification or enhancements_
 
-* e.g. use of one transaction for batch load process will not scale, sufficient while < 1000 customers
-* e.g. need to revisit the error handling for scenario X
-* e.g. potential to upgrade library Y to take advantage of new features which would enable Z
-* e.g. could simplify the code by consolidating the three internal services
+* Use at your own risk, experimental code intended for learning, not intended for teaching or production quality 
 
 
