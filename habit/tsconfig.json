@@ -34,9 +34,3 @@
   ],
   "exclude": ["tsDist", "src/coverage", "webpack.config.js"]
 }
-
-{
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-  }
-}

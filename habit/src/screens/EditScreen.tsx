@@ -1,24 +1,34 @@
-import React, { useContext } from 'react';
-import { StyleSheet } from 'react-native';
-import { Context } from '../context/BlogContext';
+import React, {useContext} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Context, State, BlogPost} from '../context/BlogContext';
 import BlogPostForm from '../components/BlogPostForm';
+import {NavigationState} from "react-navigation";
+import {StackNavigationProp} from "@react-navigation/stack";
 
-const EditScreen = ({ navigation }) => {
-  const id = navigation.getParam('id');
-  const { state, editBlogPost } = useContext(Context);
+interface Props {
+    navigation: StackNavigationProp<NavigationState>;
+}
 
-  const blogPost = state.find(blogPost => blogPost.id === id);
+const EditScreen = ({navigation}: Props) => {
+    const id = navigation.getParam('id');
+    const {state:State, editBlogPost} = useContext(Context);
 
-  return (
-    <BlogPostForm
-      initialValues={{ title: blogPost.title, content: blogPost.content }}
-      onSubmit={(title, content) => {
-        editBlogPost(id, title, content, () => navigation.pop());
-      }}
-    />
-  );
+    const blogPost = state.find((blogPost: BlogPost) => blogPost.id === id);
+
+    return (
+        <View style={styles.container}>
+            <BlogPostForm
+                initialValues={{title: blogPost.title, content: blogPost.content}}
+                onSubmit={(title: string, content: string) => {
+                    editBlogPost(id, title, content, () => navigation.pop());
+                }}
+            />
+        </View>
+    );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {}
+});
 
 export default EditScreen;
