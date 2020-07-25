@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {Context, BlogPost} from '../context/BlogContext';
+import {Context, Habit} from '../context/HabitContext';
 import {EvilIcons} from '@expo/vector-icons';
 import {NavigationParams, NavigationScreenProp, NavigationState} from "react-navigation";
 
@@ -11,14 +11,14 @@ interface Props {
 const ShowScreen = ({navigation}: Props) => {
     const {state} = useContext(Context);
 
-    const blogPost = state.find(
-        (blogPost:BlogPost) => blogPost.id === navigation.getParam('id')
+    const habit = state.habits.find(
+        (habit:Habit) => habit.id === navigation.getParam('id')
     );
 
     return (
         <View style={styles.container}>
-            <Text>{blogPost.title}</Text>
-            <Text>{blogPost.content}</Text>
+            <Text>{habit.title}</Text>
+            <Text>{habit.content}</Text>
         </View>
     );
 };

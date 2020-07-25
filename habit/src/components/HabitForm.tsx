@@ -9,30 +9,30 @@ interface Props {
     }
 }
 
-const BlogPostForm = ({onSubmit, initialValues}:Props) => {
+const HabitForm = ({onSubmit, initialValues}:Props) => {
     const [title, setTitle] = useState(initialValues.title);
     const [content, setContent] = useState(initialValues.content);
 
     return (
         <View>
-            <Text style={styles.label}>Enter Title:</Text>
+            <Text style={styles.label}>Enter Habit Title:</Text>
             <TextInput
                 style={styles.input}
                 value={title}
                 onChangeText={text => setTitle(text)}
             />
-            <Text style={styles.label}>Enter Content:</Text>
+            <Text style={styles.label}>Enter Habit Detail:</Text>
             <TextInput
                 style={styles.input}
                 value={content}
                 onChangeText={text => setContent(text)}
             />
-            <Button title="Save Blog Post" onPress={() => onSubmit(title, content)}/>
+            <Button title="Save Habit" onPress={() => onSubmit(title, content)}/>
         </View>
     );
 };
 
-BlogPostForm.defaultProps = {
+HabitForm.defaultProps = {
     initialValues: {
         title: '',
         content: ''
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default BlogPostForm;
+export default HabitForm;

@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Context, State, BlogPost} from '../context/BlogContext';
-import BlogPostForm from '../components/BlogPostForm';
+import {Context, Habit} from '../context/HabitContext';
+import HabitForm from '../components/HabitForm';
 import {NavigationState} from "react-navigation";
 import {StackNavigationProp} from "@react-navigation/stack";
 
@@ -11,16 +11,16 @@ interface Props {
 
 const EditScreen = ({navigation}: Props) => {
     const id = navigation.getParam('id');
-    const {state:State, editBlogPost} = useContext(Context);
+    const {state, editHabit} = useContext(Context);
 
-    const blogPost = state.find((blogPost: BlogPost) => blogPost.id === id);
+    const habit = state.habits.find((habit: Habit) => habit.id === id);
 
     return (
         <View style={styles.container}>
-            <BlogPostForm
-                initialValues={{title: blogPost.title, content: blogPost.content}}
+            <HabitForm
+                initialValues={{title: habit.title, content: habit.content}}
                 onSubmit={(title: string, content: string) => {
-                    editBlogPost(id, title, content, () => navigation.pop());
+                    editHabit(id, title, content, () => navigation.pop());
                 }}
             />
         </View>

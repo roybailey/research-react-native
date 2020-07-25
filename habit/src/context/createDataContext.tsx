@@ -1,5 +1,5 @@
 import React, {Reducer, useReducer} from 'react';
-import {Action, State} from "./BlogContext";
+import {Action, State} from "./HabitContext";
 
 export default (reducer: Reducer<State, Action>, actions: any, initialState: State) => {
     const Context = React.createContext<State>(initialState);

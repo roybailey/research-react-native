@@ -6,7 +6,7 @@ import {
     FlatList,
     TouchableOpacity
 } from 'react-native';
-import {Context} from '../context/BlogContext';
+import {Context} from '../context/HabitContext';
 import {Feather} from '@expo/vector-icons';
 import {NavigationParams, NavigationScreenProp, NavigationState} from "react-navigation";
 
@@ -15,13 +15,16 @@ interface Props {
 }
 
 const IndexScreen = ({navigation}:Props) => {
-    const {state, deleteBlogPost, getBlogPosts} = useContext(Context);
+    const ctxt = useContext(Context);
+    const {state, deleteHabit, getHabits} = ctxt;
+
+    console.log(JSON.stringify(ctxt,null,2));
 
     useEffect(() => {
-        getBlogPosts();
+        getHabits();
 
         const listener = navigation.addListener('didFocus', () => {
-            getBlogPosts();
+            getHabits();
         });
 
         return () => {
@@ -32,8 +35,8 @@ const IndexScreen = ({navigation}:Props) => {
     return (
         <View>
             <FlatList
-                data={state}
-                keyExtractor={blogPost => blogPost.title}
+                data={state.habits}
+                keyExtractor={habit => habit.title}
                 renderItem={({item}) => {
                     return (
                         <TouchableOpacity
@@ -43,7 +46,7 @@ const IndexScreen = ({navigation}:Props) => {
                                 <Text style={styles.title}>
                                     {item.title} - {item.id}
                                 </Text>
-                                <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+                                <TouchableOpacity onPress={() => deleteHabit(item.id)}>
                                     <Feather style={styles.icon} name="trash"/>
                                 </TouchableOpacity>
                             </View>

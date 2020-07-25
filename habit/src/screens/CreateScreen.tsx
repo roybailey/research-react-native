@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Context} from '../context/BlogContext';
-import BlogPostForm from '../components/BlogPostForm';
+import {Context} from '../context/HabitContext';
+import HabitForm from '../components/HabitForm';
 import {NavigationParams, NavigationScreenProp, NavigationState} from "react-navigation";
 
 interface Props {
@@ -9,14 +9,15 @@ interface Props {
 }
 
 const CreateScreen = ({navigation}:Props) => {
-    const {addBlogPost} = useContext(Context);
+    const {addHabit} = useContext(Context);
 
     return (
         <View style={styles.container}>
-            <BlogPostForm
-                onSubmit={(title:string, content:string) => {
-                    addBlogPost(title, content, () => navigation.navigate('Index'));
-                }}
+            <HabitForm
+                onSubmit={
+                    (title:string, content:string) =>
+                        addHabit(title, content, () => navigation.navigate('Index'))
+                }
             />
         </View>
     );
